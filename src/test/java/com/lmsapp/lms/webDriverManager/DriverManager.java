@@ -1,5 +1,5 @@
 
-package com.dsportalapp.dsalgo.webDriverManager;
+package com.lmsapp.lms.webDriverManager;
 
 import java.io.IOException;
 import java.time.Duration;
@@ -13,7 +13,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-import com.dsportalapp.dsalgo.utilities.ConfigReader;
+import com.lmsapp.lms.utilities.ConfigReader;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 

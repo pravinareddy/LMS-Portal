@@ -1,12 +1,12 @@
-package com.dsportalapp.dsalgo.testRunner;
+package com.lmsapp.lms.testRunner;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-import com.dsportalapp.dsalgo.utilities.ConfigReader;
-import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
+import com.lmsapp.lms.utilities.ConfigReader;
+import com.lmsapp.lms.webDriverManager.DriverManager;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;

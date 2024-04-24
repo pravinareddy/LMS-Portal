@@ -1,5 +1,5 @@
 
-package com.dsportalapp.dsalgo.testRunner;
+package com.lmsapp.lms.testRunner;
 
 import org.testng.annotations.DataProvider;
 

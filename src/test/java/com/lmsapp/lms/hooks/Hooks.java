@@ -1,4 +1,4 @@
-package com.dsportalapp.dsalgo.hooks;
+package com.lmsapp.lms.hooks;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -7,9 +7,10 @@ import java.util.Properties;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import com.dsportalapp.dsalgo.utilities.ConfigReader;
-import com.dsportalapp.dsalgo.utilities.TestSetup;
-import com.dsportalapp.dsalgo.webDriverManager.DriverManager;
+
+import com.lmsapp.lms.utilities.ConfigReader;
+import com.lmsapp.lms.utilities.TestSetup;
+import com.lmsapp.lms.webDriverManager.DriverManager;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;

@@ -1,4 +1,4 @@
-package com.dsportalapp.dsalgo.POM;
+package com.lmsapp.lms.POM;
 
 import org.openqa.selenium.WebDriver;
 

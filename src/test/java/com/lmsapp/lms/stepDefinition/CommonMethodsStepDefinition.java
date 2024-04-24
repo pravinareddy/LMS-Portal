@@ -1,4 +1,4 @@
-package com.dsportalapp.dsalgo.stepDefinition;
+package com.lmsapp.lms.stepDefinition;
 
 
 import java.io.IOException;
@@ -8,8 +8,10 @@ import java.util.concurrent.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.dsportalapp.dsalgo.POM.CommonMethodsObject;
-import com.dsportalapp.dsalgo.utilities.TestSetup;
+
+import com.lmsapp.lms.POM.CommonMethodsObject;
+import com.lmsapp.lms.utilities.TestSetup;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

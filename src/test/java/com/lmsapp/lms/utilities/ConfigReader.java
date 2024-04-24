@@ -1,5 +1,5 @@
 
-package com.dsportalapp.dsalgo.utilities;
+package com.lmsapp.lms.utilities;
 
 
 import java.io.FileInputStream;
