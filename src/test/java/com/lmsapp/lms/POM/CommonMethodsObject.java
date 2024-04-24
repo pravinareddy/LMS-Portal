@@ -1,4 +1,3 @@
-
 package com.lmsapp.lms.POM;
 
 import java.time.Duration;
@@ -24,10 +23,37 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+
 import com.lmsapp.lms.utilities.ConfigReader;
 
 public class CommonMethodsObject {
+	
+	WebDriver driver;
+	
+	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
 
+	public CommonMethodsObject(WebDriver driver) {
+
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+			
+	}
+
+	@FindBy(xpath="//input[@id='username']")
+	WebElement usernameTxtBox;
+	@FindBy(xpath="//input[@id='password']")
+	WebElement passwordTxtBox;
+	@FindBy(xpath="//button[@id='login']")
+	WebElement loginBtn;
+	
+	public void loginUser() {
+		String username=ConfigReader.getProperty("username");
+		String password=ConfigReader.getProperty("password");
+		usernameTxtBox.sendKeys(username);
+		passwordTxtBox.sendKeys(password);
+		loginBtn.click();
 		
+		
+	}
 
 }

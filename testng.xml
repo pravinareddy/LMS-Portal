@@ -4,19 +4,19 @@
   <test name="chrome">
 	<parameter name="browser" value="chrome"></parameter>
     <classes>
-      <class name="com.dsportalapp.dsalgo.testRunner.CrossBrowserRunner"/>
+      <class name="com.lmsapp.lms.testRunner.CrossBrowserRunner"/>
      </classes>
   </test> <!-- Test -->
   <test name="edge">
 	<parameter name="browser" value="edge"></parameter>
     <classes>
-      <class name="com.dsportalapp.dsalgo.testRunner.CrossBrowserRunner"/>
+      <class name="com.lmsapp.lms.testRunner.CrossBrowserRunner"/>
      </classes>
   </test> <!-- Test -->
   <test name="firefox">
 	<parameter name="browser" value="firefox"></parameter>
     <classes>
-      <class name="com.dsportalapp.dsalgo.testRunner.CrossBrowserRunner"/>
+      <class name="com.lmsapp.lms.testRunner.CrossBrowserRunner"/>
      </classes>
   </test> <!-- Test -->
   </suite> <!-- Suite -->

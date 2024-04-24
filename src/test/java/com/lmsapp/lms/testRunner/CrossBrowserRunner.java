@@ -16,7 +16,7 @@ import io.cucumber.testng.CucumberOptions;
 
 
 		features = "src/test/resources/features/RegistrationPage.feature",
-		glue = {"com.dsportalapp.dsalgo.stepDefinition","com.dsportalapp.dsalgo.hooks"},
+		glue = {"com.lmsapp.lms.stepDefinition","com.lmsapp.lms.hooks"},
 		monochrome = true,
 //		dryRun=true
 
