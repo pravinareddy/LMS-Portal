@@ -46,14 +46,23 @@ public class CommonMethodsObject {
 	@FindBy(xpath="//button[@id='login']")
 	WebElement loginBtn;
 	
+	
 	public void loginUser() {
-		String username=ConfigReader.getProperty("username");
-		String password=ConfigReader.getProperty("password");
-		usernameTxtBox.sendKeys(username);
-		passwordTxtBox.sendKeys(password);
-		loginBtn.click();
+		try
+		{
+			String username=ConfigReader.getProperty("username");
+			String password=ConfigReader.getProperty("password");
+			usernameTxtBox.sendKeys(username);
+			passwordTxtBox.sendKeys(password);
+			loginBtn.click();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
-		
+			
 	}
+	
 
 }
