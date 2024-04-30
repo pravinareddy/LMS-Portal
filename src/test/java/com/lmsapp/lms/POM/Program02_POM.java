@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import io.cucumber.java.lu.a;
 
-public class Program2_POM {
+public class Program02_POM {
 	WebDriver driver;
 
 	@FindBy(xpath="//*[@id=\"batch\"]")
@@ -48,7 +48,7 @@ public class Program2_POM {
 	WebElement nobtn;
 	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
 	
-	public Program2_POM(WebDriver driver) 
+	public Program02_POM(WebDriver driver) 
    {
 	this.driver = driver;
 	PageFactory.initElements(driver, this);

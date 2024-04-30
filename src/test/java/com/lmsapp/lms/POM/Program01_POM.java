@@ -12,7 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Program1_POM {
+public class Program01_POM {
 		WebDriver driver;
 		@FindBy(xpath="//*[@id=\"program\"]")
 		WebElement programlink;
@@ -57,7 +57,7 @@ public class Program1_POM {
 //		@FindBy(xpath="//div/div/div[1]/span")
 //		WebElement confirmbtn;
 		public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
-		public Program1_POM(WebDriver driver) 
+		public Program01_POM(WebDriver driver) 
 	   {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);

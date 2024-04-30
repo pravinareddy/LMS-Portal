@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 public class PageObjectManager {
 	public WebDriver driver;
 	public CommonMethodsObject commonobj;
-	public Program1_POM programobj;
-	public Program2_POM programobj2;
+	public Program01_POM programobj;
+	public Program02_POM programobj2;
 	
 	public PageObjectManager(WebDriver driver) {
 		super();
@@ -16,12 +16,12 @@ public class PageObjectManager {
 		commonobj = new CommonMethodsObject(driver);
 		return commonobj;
 		}
-		public Program1_POM getProgramMethodsObject() {
-			programobj = new Program1_POM(driver);
+		public Program01_POM getProgramMethodsObject() {
+			programobj = new Program01_POM(driver);
 		return programobj;
 	}
-		public Program2_POM getProgramMethodsObject2() {
-			programobj2 = new Program2_POM(driver);
+		public Program02_POM getProgramMethodsObject2() {
+			programobj2 = new Program02_POM(driver);
 		return programobj2;
 	}
 		}
