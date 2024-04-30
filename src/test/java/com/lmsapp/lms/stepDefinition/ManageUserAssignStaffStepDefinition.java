@@ -10,6 +10,7 @@ import com.lmsapp.lms.POM.CommonMethodsObject;
 import com.lmsapp.lms.POM.ManageUserPOM2;
 import com.lmsapp.lms.utilities.TestSetup;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -48,6 +49,50 @@ public class ManageUserAssignStaffStepDefinition {
 		LOG.info("Empty form validation for AssignStaff done sucessfully");
 	}
 	
+	@Then("Admin gets a Error message alert for assign staff")
+	public void admin_gets_a_error_message_alert_for_assign_staff() {
+		manageuser2.validateEmptyFormErrMsgForAssignStaff();
+	}
+	
+	@Given("Admin is in Assign Staff details pop up page")
+	public void admin_is_in_assign_staff_details_pop_up_page() {
+		manageuser2.clickassignStaffBtn();
+	 
+	}
+	
+	@When("Admin clicks {string} button without giving Email ID")
+	public void admin_clicks_button_without_giving_email_id(String string) {
+		manageuser2.validateAssignStafftWithOutEmailID();
+	}
+
+	@Then("Admin gets a Error message alert as Email ID  is required")
+	public void admin_gets_a_error_message_alert_as_email_id_is_required() {
+		manageuser2.validateErrMsgAssignStafftWithOutEmailID();
+	}
+	
+	@When("Admin clicks save button without giving Program Name  for {string}")
+	public void admin_clicks_save_button_without_giving_program_name_for(String emailId) throws InterruptedException {
+		manageuser2.validateAssignStafftWithOutProgram(emailId);
+	}
+	
+	@When("Admin clicks save button without giving BatchName  for {string}")
+	public void admin_clicks_save_button_without_giving_batch_name_for(String emailId) {
+		manageuser2.validateAssignStaffWithOutBatch(emailId);
+	}
+	
+	@When("Admin clicks Save button without giving Status for {string}")
+	public void admin_clicks_save_button_without_giving_status_for(String emailId) {
+		manageuser2.validateAssignStafftWithOutStatus(emailId);
+	}
+	
+	@When("Admin clicks Close\\(X) Icon on Assign staff form for {string}")
+	public void admin_clicks_close_x_icon_on_assign_staff_form_for(String emailId) throws InterruptedException {
+		manageuser2.validateAssignStafftClickCloseBtn(emailId);
+	   
+	}
+
+	
+
 
 }
 

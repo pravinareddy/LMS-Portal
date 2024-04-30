@@ -59,9 +59,9 @@ public class ManageUserPOM2 {
 	WebElement assignStdSaveBtn;
 	@FindBy(xpath = "//button[@label='Cancel']")
 	WebElement assignStdCancelBtn;
-	@FindBy(xpath = "//button[@class='ng-tns-c132-8 p-dialog-header-icon p-dialog-header-close p-link p-ripple ng-star-inserted']")
+	@FindBy(xpath = "//span[contains(text(),'Assign Student')]//following-sibling::div//button")
 	WebElement assignStdCloseBtn;
-	@FindBy(xpath = "//button[@class='ng-tns-c132-7 p-dialog-header-icon p-dialog-header-close p-link p-ripple ng-star-inserted']")
+	@FindBy(xpath = "//span[contains(text(),'Assign User')]//following-sibling::div//button")
 	WebElement assignSaffCloseBtn;
 	@FindBy(xpath="//button[@id='Assign' and @label='Assign Staff']")
 	WebElement assignStaffBtn;
@@ -294,7 +294,7 @@ public class ManageUserPOM2 {
 	WebElement stdtEmailIdDD;
 	@FindBy(xpath = "//*[@id='programName']")
 	WebElement prgNameTxtBox;
-	@FindBy(xpath = "//input[@id='batchName']")
+	@FindBy(xpath = "//*[@id='batchName']")
 	WebElement batchNameTxtBox;
 	@FindBy(xpath = "//input[@id='Active']")
 	WebElement activeRadioBtn;
@@ -331,8 +331,8 @@ public class ManageUserPOM2 {
 			Assert.assertTrue(staffEmailDropDown.getText().equals("Select Email Id") , "Default value of Email Id feild is not valid");
 			Assert.assertTrue(skillTxtBox.getText().equals("") , "Default value of Skill feild is not valid");
 			Assert.assertTrue(prgNameTxtBox.getText().equals("Select a Program name") , "Default value of Proogram Name feild is not valid");
-			Assert.assertTrue(batchNameTxtBox.getText().equals("") , "Default value of Batch Name feild is not valid");
-		
+			Assert.assertTrue(batchNameTxtBox.getText().equals("Select Batch Name") , "Default value of Batch Name feild is not valid");
+			LOG.info("Empty form validation for AssignStaff done sucessfully");
 		}
 		
 		catch(Exception e)
@@ -347,7 +347,7 @@ public class ManageUserPOM2 {
 		
 			Assert.assertTrue(activeRadioBtn.isEnabled(), "Active Radio Button is not Enbled");
 			Assert.assertTrue(inactiveRadioBtn.isEnabled(), "Inactive Radio Button is not Enbled");
-
+			LOG.info("Radio buttons on Assign staff are active and enabled");
 			}
 
 		catch (Exception e) {
@@ -376,6 +376,19 @@ public class ManageUserPOM2 {
 	{
 			
 		Assert.assertTrue(assignstdEmailErrmsg.getText().equals("User Email Id is required.") , "Invalid Error msg for emaild id");
+		Assert.assertTrue(assignstdProgErrmsg.getText().equals("Program Name is required.") , "Invalid Error msg for Program Name");
+		Assert.assertTrue(assignstdBatchErrmsg.getText().equals("Batch Name is required.") , "Invalid Error msg for Batch name");
+		Assert.assertTrue(assignstdStatusErrmsg.getText().equals("Status is required.") , "Invalid Error msg for status");
+	
+	}
+	
+	@FindBy(xpath="//div[contains(text(),' Email Id is required. ')]")
+	WebElement assignstaffEmailErrmsg;
+	
+	public void validateEmptyFormErrMsgForAssignStaff()
+	{
+			
+		Assert.assertTrue(assignstaffEmailErrmsg.getText().equals("Email Id is required.") , "Invalid Error msg for emaild id");
 		Assert.assertTrue(assignstdProgErrmsg.getText().equals("Program Name is required.") , "Invalid Error msg for Program Name");
 		Assert.assertTrue(assignstdBatchErrmsg.getText().equals("Batch Name is required.") , "Invalid Error msg for Batch name");
 		Assert.assertTrue(assignstdStatusErrmsg.getText().equals("Status is required.") , "Invalid Error msg for status");
@@ -423,6 +436,57 @@ public class ManageUserPOM2 {
 		assignStdSaveBtn.click();
 			
 	}
+	
+	public void validateAssignStafftWithOutStatus(String emailid)
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		assignstaffEmailId.click();
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+			
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{
+				 
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		
+		prognameDD.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		progList.get(7).click();
+		batchDD.click();
+		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", batchList.get(0));
+		
+		assignStdSaveBtn.click();
+			
+	}
+	
+	public void validateAssignStafftWithOutEmailID()
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		prognameDD.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		progList.get(0).click();
+		batchDD.click();
+		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", batchList.get(0));
+		
+		assignStdSaveBtn.click();
+			
+	}
+	
+	public void validateErrMsgAssignStafftWithOutEmailID()
+	{
+		Assert.assertTrue(assignstaffEmailErrmsg.getText().equals("Email Id is required.") , "Invalid Error msg for emaild id");
+	}
+	
 	public void validateErrMsgAssignStdtWithOutStatus()
 	{
 		Assert.assertTrue(assignstdStatusErrmsg.getText().equals("Status is required.") , "Invalid Error msg for status");
@@ -456,6 +520,33 @@ public class ManageUserPOM2 {
 			
 	}
 	
+	public void validateAssignStaffWithOutBatch(String emailid)
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		assignstaffEmailId.click();
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+			
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{
+				 
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		
+		prognameDD.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", progList.get(2));
+		assignStdSaveBtn.click();
+			
+	}
+	
 	public void validateErrMsgAssignStdtWithOutProgram()
 	{
 		Assert.assertTrue(assignstdProgErrmsg.getText().equals("Program Name is required.") , "Invalid Error msg for Program Name");
@@ -466,6 +557,34 @@ public class ManageUserPOM2 {
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		emailDD.click();
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+			
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{
+				 
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		
+
+		assignStdSaveBtn.click();
+			
+	}
+	@FindBy(xpath="//div[@role='button'][1]")
+	WebElement assignstaffEmailId;
+	
+	public void validateAssignStafftWithOutProgram(String emailid) throws InterruptedException
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		Thread.sleep(1000);
+		assignstaffEmailId.click();
 		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
 		ArrayList<String> StudtEmailids = new ArrayList<>();
 		for(WebElement element : emailidList)
@@ -523,6 +642,38 @@ public class ManageUserPOM2 {
 		executor.executeScript("arguments[0].click();", batchList.get(0));
 		executor.executeScript("arguments[0].click();", activeRadioBtn);
 		executor.executeScript("arguments[0].click();", assignStdCloseBtn);
+	
+			
+	}
+	public void validateAssignStafftClickCloseBtn(String emailid) throws InterruptedException
+	{
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		emailDD.click();
+		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
+		ArrayList<String> StudtEmailids = new ArrayList<>();
+		for(WebElement element : emailidList)
+		{
+			StudtEmailids.add(element.getText());
+			
+		}
+		for(int i=0;i<StudtEmailids.size();i++)
+		{
+			if(StudtEmailids.get(i).equals(emailid))
+			{
+				 
+			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+			}
+		}
+		
+		prognameDD.click();
+		List<WebElement>progList= driver.findElements(By.xpath("//li"));
+		progList.get(32).click();
+		batchDD.click();
+		Thread.sleep(500);
+		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
+		executor.executeScript("arguments[0].click();", batchList.get(1));
+		executor.executeScript("arguments[0].click();", activeRadioBtn);
+		executor.executeScript("arguments[0].click();", assignSaffCloseBtn);
 	
 			
 	}

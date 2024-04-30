@@ -77,34 +77,34 @@ public class ManageUserAssignStudentStepDefintion {
 		LOG.info("Empty Form validation done successfully");
 	}
 	
-	@When("Admin clicks {string} button without entering Student Email id")
-	public void admin_clicks_button_without_entering_student_email_id(String string) {
-	  
-	}
-
-	@Then("Admin gets a Error message alert as Student Email id is required")
-	public void admin_gets_a_error_message_alert_as_student_email_id_is_required() {
-	   
-	}
+//	@When("Admin clicks {string} button without entering Student Email id")
+//	public void admin_clicks_button_without_entering_student_email_id(String string) {
+//	  
+//	}
+//
+//	@Then("Admin gets a Error message alert as Student Email id is required")
+//	public void admin_gets_a_error_message_alert_as_student_email_id_is_required() {
+//	   
+//	}
+//	
+//	@When("Admin clicks {string} button without selecting program")
+//	public void admin_clicks_button_without_selecting_program(String string) {
+//	  
+//	}
+//
+//	@Then("Admin gets a Error message alert as Program is required")
+//	public void admin_gets_a_error_message_alert_as_program_is_required() {
+//	    
+//	}
+//	@When("Admin clicks {string} button without selecting batch")
+//	public void admin_clicks_button_without_selecting_batch(String string) {
+//	
+//	}
 	
-	@When("Admin clicks {string} button without selecting program")
-	public void admin_clicks_button_without_selecting_program(String string) {
-	  
-	}
-
-	@Then("Admin gets a Error message alert as Program is required")
-	public void admin_gets_a_error_message_alert_as_program_is_required() {
-	    
-	}
-	@When("Admin clicks {string} button without selecting batch")
-	public void admin_clicks_button_without_selecting_batch(String string) {
-	
-	}
-	
-	@Then("Admin gets a Error message alert as Batch is required")
-	public void admin_gets_a_error_message_alert_as_batch_is_required() {
-	
-	}
+//	@Then("Admin gets a Error message alert as Batch is required")
+//	public void admin_gets_a_error_message_alert_as_batch_is_required() {
+//	
+//	}
 
 	
 	@When("Admin clicks {string} button without giving status for {string}")
