@@ -25,7 +25,6 @@ public class Hooks {
 	Properties prop;
 	public TestSetup testup;
 	
-	
 	public Hooks(TestSetup testup) throws IOException {
 		
 		this.testup = testup;
@@ -49,15 +48,12 @@ public class Hooks {
 			
 			e.printStackTrace();
 		}
-		
-	}
-	
-	
+			}
 	
 	@After(order = 0)
 	public void quitBrowser() {
 		driver.quit();
-	}*/
+	}	*/
 	
 	@After(order = 1)
 	public void takeScreenshotOnFailure(Scenario scenario)
