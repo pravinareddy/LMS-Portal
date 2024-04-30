@@ -52,12 +52,12 @@ public class Hooks {
 		
 	}
 	
-	
+	*/
 	
 	@After(order = 0)
 	public void quitBrowser() {
 		driver.quit();
-	}*/
+	}
 	
 	@After(order = 1)
 	public void takeScreenshotOnFailure(Scenario scenario)

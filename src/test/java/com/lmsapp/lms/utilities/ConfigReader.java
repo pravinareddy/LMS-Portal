@@ -13,8 +13,8 @@ public class ConfigReader {
 	private static void init_prop() {		
 		prop.set(new Properties());
 		try {
-			//FileInputStream fis = new FileInputStream("C:\\Users\\User\\eclipse-workspace\\LMSapp\\src\\test\\resources\\config\\global.properties");
-			InputStream fis = ConfigReader.class.getClassLoader().getResourceAsStream("config/global.properties");
+			FileInputStream fis = new FileInputStream("C:\\Users\\Priya\\git\\LMS-Portal\\src\\test\\resources\\config\\global.properties");
+		//	InputStream fis = ConfigReader.class.getClassLoader().getResourceAsStream("config/global.properties");
 			prop.get().load(fis);
 		} 
 		catch (IOException e) {
