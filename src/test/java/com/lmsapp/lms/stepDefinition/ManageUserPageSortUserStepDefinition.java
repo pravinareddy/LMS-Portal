@@ -13,7 +13,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import jdk.internal.org.jline.utils.Log;
 
-public class ManageUserPage2StepDefinition {
+public class ManageUserPageSortUserStepDefinition {
 	
 	WebDriver driver;
 	TestSetup testsetup;
@@ -22,7 +22,7 @@ public class ManageUserPage2StepDefinition {
 	
 	
 	
-	public ManageUserPage2StepDefinition(TestSetup testsetup) throws IOException {
+	public ManageUserPageSortUserStepDefinition(TestSetup testsetup) throws IOException {
 		super();
 		this.testsetup = testsetup;
 		this.driver = testsetup.drivermanager.getDriverManager();

@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 
 public class ManageUserPOM2 {
 
@@ -147,16 +148,20 @@ public class ManageUserPOM2 {
 			Collections.sort(sortedList);
 			sortElement.click();
 			aftersortedlList = sortFnc(columnIndex);
-			Assert.assertEquals(sortedList, aftersortedlList);
+			SoftAssert softassert= new SoftAssert();
+				
+			softassert.assertEquals(sortedList, aftersortedlList);
 
 			// Descending order sorting
 			Collections.sort(sortedList, Collections.reverseOrder());
 			sortElement.click();
 			aftersortedlList = sortFnc(columnIndex);
-			Assert.assertEquals(sortedList, aftersortedlList);
+			softassert.assertEquals(sortedList, aftersortedlList);
+			softassert.assertAll();
 
 			LOG.info("Sorting validated successfully ");
 		} catch (Exception e) {
+		
 			e.printStackTrace();
 		}
 
@@ -714,4 +719,181 @@ public class ManageUserPOM2 {
 	{
 		Assert.assertFalse(assignStdCloseBtn.isEnabled(), "Assign student popup is still open");
 	}
+	
+	
+	@FindBy(xpath="//span[@class='pi pi-times ng-tns-c133-9']/..")
+	WebElement delAlertCloseBtn;
+	@FindBy(xpath="//div[@class='p-toast-detail ng-tns-c90-10']/..")
+	private WebElement msgDeleteSuccess;
+	@FindBy(xpath="//div[@class='p-toast-summary ng-tns-c90-10']/..")
+	private WebElement msgUserDelete;
+	@FindBy(xpath="//span[contains(text(),'Yes')]/..")
+     private WebElement deleteYesBtn;
+	@FindBy(xpath="//span[contains(text(),'No')]/..")
+    private WebElement deleteNoBtn;
+	@FindBy(xpath="//span[contains(text(),'Confirm')]/..")
+    private WebElement deleteConfirmMsg;
+	@FindBy(xpath = "//button[@class='p-button-rounded p-button-danger p-button p-component p-button-icon-only'] ")
+	WebElement rowDeleteButton;
+	@FindBy(xpath="//p-confirmdialog/div/div")
+	private WebElement deletePopupWindow;
+	public void clickRowDeleteButton() {
+		rowDeleteButton.click();
+	}
+	public void validateRowDeleteBtn() {
+		Assert.assertTrue(deleteYesBtn.isEnabled(), "Yes button is disabled for assign student popup");
+		Assert.assertTrue(deleteNoBtn.isEnabled(), "No button is disabled for assign student popup");
+		Assert.assertEquals(deleteConfirmMsg.getText(), "Confirm",
+				"Confirm heading is not present in the student popup");
+		System.out.println("Is  Yes button in Delete popup window enabled? " + deleteYesBtn.isEnabled());
+	}
+		
+	public void validatePopupAlertExists() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		try {
+		 	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("deletePopupWindow")));
+			System.out.println("Deletion alert disappeared successfully");
+		}catch (NoSuchElementException  e) {
+		    System.out.println("Deletion alert was not found or is stale.");
+		}
+	}
+		
+		public void singleUserDeleteInRow(String alertAction, List<String> UserID) throws InterruptedException {
+		SoftAssert softAssert = new SoftAssert();
+		List<String> ids = new ArrayList<>(UserID);
+		List<String> originalList =sortFnc(2);
+				//sorting("ID", 2);
+		Collections.sort(ids);
+		idIcon.click();
+		boolean gotoNextPage = false;
+		WebElement deleteBtn = null;
+		int index =0;
+		do {
+			for (int i = index; i < ids.size(); i++) {
+				String id = ids.get(i);
+				try {
+					WebElement chkbox=driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//preceding-sibling::td[1]"));
+					chkbox.click();
+					deleteBtn=driver.findElement(By.xpath("//tr/td[contains(text(),'" + id + "')]//following-sibling::td[4]//button[2]"));
+					deleteBtn.click();
+					Thread.sleep(1000);
+					if (alertAction.equalsIgnoreCase("yes")) {
+						deleteYesBtn.click();
+						String actualMsg =msgDeleteSuccess.getText().trim();
+						System.out.println("actualMsg is "+actualMsg);
+						String expectedMessage = "Successful\nUser Deleted".trim();
+						Thread.sleep(1000);
+						softAssert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");
+						Thread.sleep(1000);
+						softAssert.assertTrue(!originalList.contains(id));
+						softAssert.assertAll();
+					} else if (alertAction.equalsIgnoreCase("no")) {
+						deleteNoBtn.click();
+						chkbox.click();
+						validatePopupAlertExists();
+	    			} else if (alertAction.equalsIgnoreCase("close")) {
+	    				delAlertCloseBtn.click();
+						chkbox.click();
+						validatePopupAlertExists();
+					}
+				} catch (NoSuchElementException ex) {
+					 gotoNextPage = true;
+		                break;
+				}
+				index++;
+			}
+			 if (gotoNextPage && index< ids.size()) {
+		            if (nextBtn.isEnabled()) {
+		            	nextBtn.click();
+		            } else {
+		                  break;
+		            }
+		        }
+			 if(index == ids.size())
+		        	break;
+		    } while (gotoNextPage || !ids.isEmpty());
+		
+	}
+		
+		@FindBy(xpath="//span[@class='p-checkbox-icon']/..")
+		private WebElement checkBox;
+		@FindBy(xpath="//button[@class='p-button-danger p-button p-component p-button-icon-only']")
+		private WebElement headerDeleteBtn;
+		
+		public void clickCheckBox() {
+		    try {
+		        checkBox.click();
+		    } catch (NoSuchElementException ex) {
+		        System.out.println("Checkbox element not found on the page.");
+		    }
+		}
+		
+		public void validateHeaderDelete() {
+			try {
+				boolean isheaderDeleteBtn = headerDeleteBtn.isEnabled();
+				if (isheaderDeleteBtn) {
+				    System.out.println("Delete button is enabled after clicking the checkbox.");
+				} else {
+				    System.out.println("Delete button is not enabled after clicking the checkbox.");
+				}
+			} 	catch (NoSuchElementException e) {
+		        System.out.println("Delete button not found on the page.");
+		    }
+		}
+		
+		public void multipleUserDelete(String alertAction, List<String> UserID) throws InterruptedException {
+			SoftAssert softAssert = new SoftAssert();
+			List<String> ids = new ArrayList<>(UserID);
+			List<String> originalList = sortFnc(2);
+					//sorting("ID", 2);
+			Collections.sort(ids);
+			idIcon.click();
+			boolean gotoNextPage = false;
+			WebElement deleteBtn = null;
+			int index = 0;
+			String id = "";
+			do {
+				for (int i = index; i < ids.size(); i++) {
+					id = ids.get(i);
+					try {
+						WebElement checkbox = driver.findElement(
+								By.xpath("//tr/td[contains(text(),'" + id + "')]//preceding-sibling::td[1]"));
+						checkbox.click();
+						Thread.sleep(500);
+					} catch (NoSuchElementException ex) {
+						gotoNextPage = true;
+						break;
+					}
+					index++;
+				}
+				if (gotoNextPage && index < ids.size()) {
+					if (nextBtn.isEnabled()) {
+						nextBtn.click();
+					} else {
+						break;
+					}
+				}
+				if (index == ids.size())
+					break;
+			} while (gotoNextPage || !ids.isEmpty());
+			headerDeleteBtn.click();
+			Thread.sleep(1000);
+			if (alertAction.equalsIgnoreCase("yes")) {
+				deleteYesBtn.click();
+				String actualMsg = msgDeleteSuccess.getText().trim();
+				System.out.println("actualMsg is " + actualMsg);
+				String expectedMessage = "Successful\nUsers Deleted".trim();
+				Thread.sleep(1000);
+				softAssert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");
+				Thread.sleep(1000);
+				softAssert.assertTrue(!originalList.contains(id));
+				softAssert.assertAll();
+			} else if (alertAction.equalsIgnoreCase("no")) {
+				deleteNoBtn.click();
+				validatePopupAlertExists();
+			} else if (alertAction.equalsIgnoreCase("close")) {
+				delAlertCloseBtn.click();
+				validatePopupAlertExists();
+			}
+		}
 }
