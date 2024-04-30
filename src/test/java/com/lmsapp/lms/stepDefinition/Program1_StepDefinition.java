@@ -3,19 +3,19 @@ package com.lmsapp.lms.stepDefinition;
 import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import com.lmsapp.lms.POM.CommonMethodsObject;
-import com.lmsapp.lms.POM.Program01_POM;
+import com.lmsapp.lms.POM.Program1_POM;
 import com.lmsapp.lms.utilities.TestSetup;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class Program01_StepDefinition {
+public class Program1_StepDefinition {
 	WebDriver driver;
 	TestSetup testsetup;
 	CommonMethodsObject commonobj;
-	 Program01_POM programobj;
+	 Program1_POM programobj;
 	 
-	public Program01_StepDefinition(TestSetup testsetup) throws IOException {
+	public Program1_StepDefinition(TestSetup testsetup) throws IOException {
 		super();
 		this.testsetup = testsetup;
 		this.driver = testsetup.drivermanager.getDriverManager();
