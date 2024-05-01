@@ -1,5 +1,6 @@
 package com.lmsapp.lms.POM;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,7 +9,9 @@ import java.util.Set;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,6 +26,7 @@ import org.testng.Assert;
 public class BatchPage {
 
 	WebDriver driver;
+	
 
 	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
 
@@ -47,8 +51,8 @@ public class BatchPage {
 
 	@FindBy(xpath = "//div[2]/div[1]/button")
 	WebElement deleteIconBtn;
-	
-	@FindBy(xpath ="//*[@id=\"filterGlobal\"]")
+
+	@FindBy(xpath = "//*[@id=\"filterGlobal\"]")
 	WebElement searchBatchTextbox;
 
 	@FindBy(xpath = "//div/div[1]/table/tbody")
@@ -92,6 +96,9 @@ public class BatchPage {
 
 	@FindBy(xpath = " //*[@id=\"programName\"]/div/div[2]/span")
 	WebElement programDropdownBtn;
+
+//	@FindBy(xpath = " //p-dropdown/div")
+//	WebElement programDropdownBtn;
 
 	@FindBy(xpath = "//div/div/div[2]/div[4]")
 	WebElement statusRadioBtn;
@@ -141,7 +148,7 @@ public class BatchPage {
 	@FindBy(xpath = "//p-toast/div/p-toastitem/div/div/div/div[2]")
 	WebElement deleteBatchMsg;
 
-	List<WebElement> listItem;
+	// List<WebElement> listItem;
 
 	public String verifyHeader() {
 
@@ -157,9 +164,9 @@ public class BatchPage {
 		return deleteIconBtn.isEnabled();
 	}
 
-	public void clickNewBatchButton()  {
+	public void clickNewBatchButton() {
 		newBatchBtn.click();
-		
+
 	}
 
 	public String checkUrl() {
@@ -170,8 +177,6 @@ public class BatchPage {
 	public boolean checkPagination() {
 		return paginatorControl.isEnabled();
 	}
-
-	
 
 	public String checkPopUp() {
 
@@ -202,12 +207,11 @@ public class BatchPage {
 		return programNameDropdown.isDisplayed();
 
 	}
-	
+
 	public boolean checkStatusRadioBtn() {
 
 		return statusRadioBtn.isDisplayed();
 	}
-
 
 	public boolean checkActiveRadioButton() {
 
@@ -267,32 +271,55 @@ public class BatchPage {
 
 	public void enterBatchName(String batchName) throws InterruptedException {
 		batchNameTextbox.sendKeys(batchName);
-		
+		Thread.sleep(100);
 
 	}
 
+	String batchDesc = "";
+
 	public void enterBatchDesc(String string) throws InterruptedException {
-				
+		batchDesc = string;
+
 		batchDescriptionTextbox.clear();
 		batchDescriptionTextbox.sendKeys(string);
-		//Thread.sleep(1000);
+		System.out.println(string);
+		Thread.sleep(100);
+
+	}
+
+	boolean bool = false;
+
+	public Boolean checkBatchProgramName() throws InterruptedException {
+
+		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+		try {
+			wait.until(ExpectedConditions
+					.elementToBeClickable(By.xpath("(//div[@id='brandSlider']/div[1]/div/div/div/img)[50]")));
+			System.out.println("Element is clickable");
+			programDropdownBtn.click();
+			ulItem.click();
+			bool = true;
+		} catch (TimeoutException e) {
+			System.out.println("Element isn't clickable");
+			bool = false;
+		}
+		return bool;
 
 	}
 
 	public void selectBatchProgramName() throws InterruptedException {
+
 		
-		if(programDropdownBtn.isEnabled()) {
 		try {
-		programDropdownBtn.click();
-		ulItem.click();
+			programDropdownBtn.click();
+			ulItem.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		}
-		//Thread.sleep(8000);
-		// saveBtn.click();
-
 	}
+	
+	
 
 	public boolean checkNewBatchBtn() {
 		return newBatchBtn.isDisplayed();
@@ -301,16 +328,17 @@ public class BatchPage {
 
 	public boolean checkBatchTableheaders(String field) throws InterruptedException {
 
-		// System.out.println(driver.findElement(By.xpath("//table/thead/tr/th[2]")).getText());
+	   
 		boolean match = false;
-		Thread.sleep(2000);
+		
+		
 		List<WebElement> myList = driver.findElements(By.xpath("//table/thead/tr/th[contains(text(),field)]"));
 
 		for (WebElement we : myList) {
 			for (int i = 0; i < myList.size(); i++) {
 				if (we.getText().equals(field)) {
 
-					//System.out.println("Matched");
+					// System.out.println("Matched");
 					match = true;
 
 				}
@@ -375,18 +403,21 @@ public class BatchPage {
 		return arr;
 	}
 
-	
 	public void selectStatusRadiobtn() throws InterruptedException {
 		activeRadioBtn.click();
 		Thread.sleep(1000);
 
 	}
 
-	public void enterNoOfClasses(String s) {
+	String noOfClasses = "";
+
+	public void enterNoOfClasses(String s) throws InterruptedException {
 		;
 		// String s=String.valueOf(i);//Now it will return "i"
-	batchClassesTextbox.clear();
+		noOfClasses = s;
+		batchClassesTextbox.clear();
 		batchClassesTextbox.sendKeys(s);
+		Thread.sleep(100);
 
 	}
 
@@ -412,7 +443,9 @@ public class BatchPage {
 		noDeleteBtn.click();
 		Thread.sleep(1000);
 	}
-     String batchName;
+
+	String batchName;
+
 	public void clickRowDeleteIcon() throws InterruptedException {
 
 		String before_xpath = "//tbody/tr[";
@@ -443,12 +476,16 @@ public class BatchPage {
 
 	}
 
+	String updatedBatchName = "";
+
 	public void clickRowEditIcon() {
 
 		// table/tbody/tr[1]/td[7]/div/span[1]/button/span[1]
 		String before_xpath = "//tbody/tr[";
 		String after_xpath = "]/td[7]/div/span[1]";
+		updatedBatchName = driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
 		driver.findElement(By.xpath(before_xpath + "1" + after_xpath)).click();
+
 	}
 
 	public void checkRowEditIcon() {
@@ -463,27 +500,28 @@ public class BatchPage {
 		// batchDescriptionTextbox.clear();
 		batchDescriptionTextbox.sendKeys(Keys.CONTROL + "a");
 		batchDescriptionTextbox.sendKeys(Keys.BACK_SPACE);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 //		batchDescriptionTextbox.click();
 
 		batchClassesTextbox.sendKeys(Keys.CONTROL + "a");
 		batchClassesTextbox.sendKeys(Keys.BACK_SPACE);
 
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
+
 	}
 
 	public void eraseDescriptionField() throws InterruptedException {
 		// TODO Auto-generated method stub
 		batchDescriptionTextbox.sendKeys(Keys.CONTROL + "a");
 		batchDescriptionTextbox.sendKeys(Keys.BACK_SPACE);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 	}
 
 	public boolean checkSuccessMsg() {
 		// TODO Auto-generated method stub
-		boolean bool=false;
+		boolean bool = false;
 		try {
-		 bool =  successMsg.isDisplayed();
+			bool = successMsg.isDisplayed();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -494,17 +532,40 @@ public class BatchPage {
 		// TODO Auto-generated method stub
 		boolean rowFound = false;
 		System.out.println(batchName);
+		searchBatchTextbox.clear();
 		searchBatchTextbox.sendKeys(batchName);
-		//Thread.sleep(1000);
+		Thread.sleep(1000);
 		List<WebElement> rows = driver.findElements(By.xpath("//tbody/tr"));
 		System.out.println(rows.size());
-		if(rows.size()>=1) {
-			
+		if (rows.size() >= 1) {
+
 			rowFound = true;
-		}else if(rows.size()==0) {
+		} else if (rows.size() == 0) {
 			rowFound = false;
 		}
 		return rowFound;
+	}
+
+	public boolean checkUpdatedRow() throws InterruptedException {
+		boolean rowUpdated = false;
+		// System.out.println(batchName);
+		searchBatchTextbox.clear();
+		searchBatchTextbox.sendKeys(updatedBatchName);
+		Thread.sleep(1000);
+		String updatedDesc = driver.findElement(By.xpath("//tbody/tr/td[3]")).getText();
+		String updatedNoOfClasses = driver.findElement(By.xpath("//tbody/tr/td[5]")).getText();
+		if (updatedDesc.equalsIgnoreCase(batchDesc) && updatedNoOfClasses.equalsIgnoreCase(noOfClasses)) {
+			rowUpdated = true;
+		}
+
+		return rowUpdated;
+	}
+
+	public boolean checkUpdatedProgramName() {
+		// TODO Auto-generated method stub
+		return bool;
+		// driver.findElement(By.xpath("//*[@id='programName']/div/div[3]/div/ul/p-dropdownitem[5]/li/span")).click();
+		// return false;
 	}
 
 }
