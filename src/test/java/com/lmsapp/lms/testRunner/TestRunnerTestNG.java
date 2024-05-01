@@ -21,7 +21,7 @@ import io.cucumber.testng.CucumberOptions;
 		plugin = {"pretty", "html:target/cucumber.html","json:target/cucumber.json",
        		      "pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 		          "pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
-
+		
 
 		)
 
