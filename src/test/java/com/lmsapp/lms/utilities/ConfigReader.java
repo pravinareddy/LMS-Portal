@@ -35,5 +35,77 @@ public class ConfigReader {
 		}
 		prop.get().setProperty(key,value);
 	}
+	
+	public String getLocation() {
+	    if (prop.get() == null) {
+	        init_prop();
+	    }
+	    return prop.get().getProperty("Location");
+	}
 
-}
+	public String getEmail() {
+	    if (prop.get() == null) {
+	        init_prop();
+	    }
+	    return prop.get().getProperty("Email");
+	}
+	    
+		public String getURL() {
+		    if (prop.get() == null) {
+		        init_prop();
+		    }
+		    return prop.get().getProperty("URL");
+		}
+	    
+	    public String getFirstName() {
+		    if (prop.get() == null) {
+		        init_prop();
+		    }
+		    return prop.get().getProperty("FirstName");
+	    }
+	    
+	    public  String getLastName(){
+	        if (prop.get() == null) {
+	            init_prop();
+	        }
+	        return prop.get().getProperty("LastName");
+	    }
+	    
+	    public  String getMiddleName(){
+	        if (prop.get() == null) {
+	            init_prop();
+	        }
+	        return prop.get().getProperty("MiddleName");
+	    }
+
+	    public  String getPhoneNumber(){
+	        if (prop.get() == null) {
+	            init_prop();
+	        }
+	        return prop.get().getProperty("PhoneNumber");
+	    }
+	    
+	    public  String getPostGraduate(){
+	        if (prop.get() == null) {
+	            init_prop();
+	        }
+	        return prop.get().getProperty("PostGraduate");
+	    }
+	    
+	    public  String getGraduate(){
+	        if (prop.get() == null) {
+	            init_prop();
+	        }
+	        return prop.get().getProperty("Graduate");
+	    }
+	    
+	    public  String getComments(){
+	        if (prop.get() == null) {
+	            init_prop();
+	        }
+	        return prop.get().getProperty("Comments");
+	    }
+	}
+
+
+

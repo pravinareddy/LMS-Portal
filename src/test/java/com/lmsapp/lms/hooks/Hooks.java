@@ -31,33 +31,33 @@ public class Hooks {
 		this.testup = testup;
 		this.driver=testup.drivermanager.getDriverManager();
 	}
-/*	
-	@Before(order = 0)
-	public void getProperty() {
-		configFileReader = new ConfigReader();
-		prop = configFileReader.init_prop();
-	}
-	
-	@Before(order = 1)
-	public void launchBrowser() {
-	
-		//String browserName = prop.getProperty("browser");
-		driverManager = new DriverManager();
-		try {
-			driver = driverManager.getDriverManager();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
+
+//	@Before(order = 0)
+//	public void getProperty() {
+//		configFileReader = new ConfigReader();
+//		prop = configFileReader.init_prop();
+//	}
+//	
+//	@Before(order = 1)
+//	public void launchBrowser() {
+//	
+//		//String browserName = prop.getProperty("browser");
+//		driverManager = new DriverManager();
+//		try {
+//			driver = driverManager.getDriverManager();
+//		} catch (IOException e) {
+//			
+//			e.printStackTrace();
+//		}
 		
-	}
+//	}
 	
 	
 	
 	@After(order = 0)
 	public void quitBrowser() {
 		driver.quit();
-	}*/
+	}
 	
 	@After(order = 1)
 	public void takeScreenshotOnFailure(Scenario scenario)

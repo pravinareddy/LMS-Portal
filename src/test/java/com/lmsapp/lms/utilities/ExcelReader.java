@@ -56,7 +56,7 @@ public class ExcelReader {
 	public ExcelReader(String xlFilePath) {
 		try {
 			this.xlFilePath = xlFilePath;
-			fis = new FileInputStream(xlFilePath);
+			fis = new FileInputStream("C://Users//shilp//git//LMS-Portal//src//test//java//com//lmsapp//lms//utilities//ExcelReader.java");
 			workbook = new XSSFWorkbook(fis);
 			
 		} catch (Exception e) {
@@ -82,7 +82,7 @@ public class ExcelReader {
 			if (r != null)// This whole row is empty
 			{
 				if (!(r.getCell(0) == null)) {
-					// System.out.println("Row <>>>>>>>>>>>>"+r.getCell(0).getStringCellValue());
+					 System.out.println("Row <>>>>>>>>>>>>"+r.getCell(0).getStringCellValue());
 					rowCount = rowNum;
 				}
 				continue;
@@ -106,7 +106,7 @@ public class ExcelReader {
 		sheet = workbook.getSheet(sheet_name);
 		int colCount = getColumnCount();
 		int rowCount = getRowCount() + 1;
-		//System.out.println("Row Count & Col Count>>>>>>>"+rowCount +colCount);
+		System.out.println("Row Count & Col Count>>>>>>>"+rowCount +colCount);
 		String[][] dataTable = null;
 		dataTable = new String[rowCount][colCount];
 		Iterator<Row> iterator = sheet.iterator();
@@ -121,7 +121,7 @@ public class ExcelReader {
 				while (cellIterator.hasNext()) {
 
 					Cell currentCell = cellIterator.next();
-					//System.out.println("Cell Type  :"+ currentCell.getCellType());
+					System.out.println("Cell Type  :"+ currentCell.getCellType());
 					String ct=currentCell.getCellType().toString();
 			        
 					if (ct.equals("STRING")&& currentCell.getStringCellValue().length() == 0) {
