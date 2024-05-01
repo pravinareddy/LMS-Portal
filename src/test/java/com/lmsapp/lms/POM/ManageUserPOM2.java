@@ -588,12 +588,13 @@ public class ManageUserPOM2 {
 	public void validateAssignStafftWithOutProgram(String emailid) throws InterruptedException
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		Thread.sleep(1000);
+		
 		assignstaffEmailId.click();
 		List<WebElement>emailidList= driver.findElements(By.xpath("//li"));
 		ArrayList<String> StudtEmailids = new ArrayList<>();
 		for(WebElement element : emailidList)
 		{
+			
 			StudtEmailids.add(element.getText());
 			
 		}
@@ -601,8 +602,8 @@ public class ManageUserPOM2 {
 		{
 			if(StudtEmailids.get(i).equals(emailid))
 			{
-				 
-			     executor.executeScript("arguments[0].click();", emailidList.get(i));
+				 				
+				executor.executeScript("arguments[0].click();", emailidList.get(i));
 			}
 		}
 		
