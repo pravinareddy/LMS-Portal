@@ -47,8 +47,20 @@ public class Program2_POM {
 	@FindBy(xpath="/html/body/app-root/app-program/p-confirmdialog/div/div/div[3]/button[2]")
 	WebElement yesbtn;
 	@FindBy(xpath="//div/div/div[3]/button[1]")
-	WebElement nobtn;        
-	
+	WebElement nobtn;    
+	@FindBy(xpath="/html/body/app-root/app-program/div/mat-card/mat-card-content/p-table/div/p-paginator/div/button[3]")
+	WebElement nextbutton;
+	@FindBy(xpath="//div/span[2]/button[2]")
+	WebElement active_link;
+	@FindBy(xpath="//div/button[4]")
+	WebElement lastbutton ;
+	@FindBy(xpath="//div/p-paginator/div/span[2]/button[5]")
+	WebElement endofpage;  
+	@FindBy(xpath="//div/p-paginator/div/button[2]")
+	WebElement firstlink;
+	@FindBy(xpath="//div/span[2]/button[4]")
+	WebElement previousbutton;
+		
 	
 	public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
 
@@ -128,10 +140,10 @@ public class Program2_POM {
 		try {
 			while (endOfpage) {
 				originalList = driver.findElements(By.xpath("//tr/td[" + columnIndex + "]"));
-				// System.out.println(originalList.size());
+				//System.out.println(originalList.size());
 
 				for (WebElement element : originalList) {
-					// System.out.println(element.getText());
+					//System.out.println(element.getText());
 					originalListItems.add(element.getText().toLowerCase());
 				}
 				PageFactory.initElements(driver, this);
@@ -216,6 +228,43 @@ public class Program2_POM {
 		    	System.out.println("*Checkbox3 is displayed"+checkbx2);
 	
 			}
-	
-		
+			
+			//Pagenation
+			
+			public void validate_next_pagelink() {
+				nextbutton.click();
+				boolean isNextPageLinkActive = active_link.isEnabled();
+				if (isNextPageLinkActive) {
+					System.out.println("*Next page link is active*");
+				} else {
+					System.out.println("****Next page link is inactive***");
+				}
+			}
+
+			public void validate_last_pagelink() {
+				lastbutton.click();
+				String pageno=endofpage.getText();
+	   			System.out.println("*End Page Number"+pageno);
+	   			boolean isNextPageLinkActive = nextbutton.isEnabled();
+				if (isNextPageLinkActive) {
+					System.out.println("*Next Button is Enabled*");
+				} else {
+					System.out.println("Next Button is Disabled");
+				}
+			}
+			
+			public void validate_first_pagelink() {
+				lastbutton.click();
+				firstlink.click();
+				String pageno1=previousbutton.getText();
+	   			System.out.println("******Previous page*******"+pageno1);
+	   			boolean isNextPageLinkActive = previousbutton.isEnabled();
+				if (isNextPageLinkActive) {
+					System.out.println("******Previous Button is Enabled******");
+				} else {
+					System.out.println("*********Previous Button is Disabled*********");
+				}
+				
+			}
+			
 	}

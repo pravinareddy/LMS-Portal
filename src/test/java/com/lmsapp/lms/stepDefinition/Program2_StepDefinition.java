@@ -36,9 +36,12 @@ public class Program2_StepDefinition {
 		
 
 }
+	
+	//Scenario 1 
 	@Given("User is on dashboard page after login")
 	public void user_is_on_dashboard_page_after_login() {
 	    commonobj.loginUser();
+	    programobj2.click_program_navigation();
 	}
 
 	@When("Admin clicks on Batch link on Manage Program page")
@@ -72,21 +75,8 @@ public class Program2_StepDefinition {
 	public void admin_is_re_directed_to_login_page() {
 	    System.out.println("Admin is redirected to login page");
 	}
-	
-//	@When("Admin clicks on the {string} sort icon by {int} clicks")
-//	public void admin_clicks_on_the_sort_icon_by_clicks(String columnHeading, int clickCount) {
-//	  programobj2.click_program_navigation();
-//	  java.util.List<String> descendingOriginalList = programobj2.sorting(columnHeading,clickCount);
-//	}
-//	@Then("Admin should see User details are sorted by {string} Descending order")
-//	public void admin_should_see_user_details_are_sorted_by_descending_order(String string) {
-//		
-//		java.util.List<String> sortedDescendingList = descendingOriginalList.stream().sorted(Comparator.reverseOrder())
-//			        .collect(Collectors.toList());
-//		 Assert.assertTrue(descendingOriginalList.equals(sortedDescendingList),"Descending Sorted List is not matching");
-//		 System.out.println("Original List is"+ descendingOriginalList);
-//		 System.out.println("Sorted List is"+ sortedDescendingList);
-//	}
+		
+	//Scenario 2
 	
 	@When("The admin clicks on {string} sort icon")
 	public void the_admin_clicks_on_sort_icon(String headerElement) {
@@ -110,6 +100,7 @@ public class Program2_StepDefinition {
 
 	   
 	}
+	//Scenario 3 
 
 	@When("Validate Common Delete button enabled after clicking on any checkbox")
 	public void validate_common_delete_button_enabled_after_clicking_on_any_checkbox() {
@@ -137,10 +128,48 @@ public class Program2_StepDefinition {
 	    programobj2.multipledelete_by_multipleselect_using_NO();
 	}
 
-	@Then("Admin should land on Manage Program page and can see the selected programs are not deleted from the data table")
+	@Then("Admin should land on Manage Program page and can see the selected programs are not deleted from the data table")
 	public void admin_should_land_on_manage_program_page_and_can_see_the_selected_programs_are_not_deleted_from_the_data_table() {
 		System.out.println("The selected programs are not deleted from table by clicking NO Button");
 	}
+	
+	//Scenario 4
+	
+	@When("Admin clicks Next page link on the program table")
+	public void admin_clicks_next_page_link_on_the_program_table() {
+	    programobj2.validate_next_pagelink();
+	}
+
+	@Then("Admin should see the Pagination has Next active link")
+	public void admin_should_see_the_pagination_has_next_active_link() {
+	    System.out.println("Active link");
+	}
+
+
+    //Scenario 5 
+	@When("Admin clicks last page link")
+	public void admin_clicks_last_page_link() {
+		programobj2.validate_last_pagelink();
+	   
+	}
+
+	@Then("Admin should see the last page record on the table  with next page link are disabled")
+	public void admin_should_see_the_last_page_record_on_the_table_with_next_page_link_are_disabled() {
+		System.out.println("last page record on the table  with next page link are disabled");
+	    
+	}
+
+	@When("Admin clicks First page link")
+	public void admin_clicks_first_page_link() {
+		programobj2.validate_first_pagelink();
+	}
+
+	@Then("Admin should see the previous page record on the table with pagination has previous page link")
+	public void admin_should_see_the_previous_page_record_on_the_table_with_pagination_has_previous_page_link() {
+	    System.out.println("Admin sees the previous page record on the table with pagination has previous page link");
+	}
+
+
 	
 		
 }
