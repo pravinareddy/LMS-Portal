@@ -7,6 +7,8 @@ public class PageObjectManager {
 	public WebDriver driver;
 	public CommonMethodsObject commonobj;
 	public ManageUserPOM2 manageuser2;
+ 	public LoginPageOM loginPageOM;
+	public DashBoardPageOM dashboardPageOM;
 	
 	
 	
@@ -25,6 +27,22 @@ public class PageObjectManager {
 		return manageuser2;
 		
 	}
+  
+  public LoginPageOM getLoginPageObject() {
+		loginPageOM = new LoginPageOM(driver);
+		return loginPageOM;
+		
+	}
+	
+	public DashBoardPageOM getDashBoardPageObject() {
+		dashboardPageOM = new DashBoardPageOM(driver);
+		return dashboardPageOM;
+		
+	}
+	
 	
 
 }
+
+	
+
