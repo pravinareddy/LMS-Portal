@@ -46,7 +46,7 @@ public class LoginPageOM {
     @FindBy(xpath = "//mat-card-content/form/p[contains(text(), 'LMS application')]")
     private WebElement homePageText;
 
-    @FindBy(xpath = "//mat-toolbar/span[1]") // Have problem 
+    @FindBy(xpath = "//mat-toolbar/span[1]")  
     private WebElement dashboardPageText;
 
     @FindBy(xpath = "//app-login//div/div/img")
