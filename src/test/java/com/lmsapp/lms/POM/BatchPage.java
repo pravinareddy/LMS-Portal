@@ -478,12 +478,13 @@ public class BatchPage {
 
 	String updatedBatchName = "";
 
-	public void clickRowEditIcon() {
+	public void clickRowEditIcon() throws InterruptedException {
 
 		// table/tbody/tr[1]/td[7]/div/span[1]/button/span[1]
 		String before_xpath = "//tbody/tr[";
 		String after_xpath = "]/td[7]/div/span[1]";
 		updatedBatchName = driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).getText();
+		Thread.sleep(1000);
 		driver.findElement(By.xpath(before_xpath + "1" + after_xpath)).click();
 
 	}
@@ -567,5 +568,4 @@ public class BatchPage {
 		// driver.findElement(By.xpath("//*[@id='programName']/div/div[3]/div/ul/p-dropdownitem[5]/li/span")).click();
 		// return false;
 	}
-
 }

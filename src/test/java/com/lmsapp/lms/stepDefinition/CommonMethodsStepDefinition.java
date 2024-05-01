@@ -29,6 +29,7 @@ public class CommonMethodsStepDefinition {
 		super();
 		this.testsetup = testsetup;
 		this.driver = testsetup.drivermanager.getDriverManager();
+		
 		commonobj = testsetup.pageobjectmanager.getCommonMethodsObject();
 		
 	}
