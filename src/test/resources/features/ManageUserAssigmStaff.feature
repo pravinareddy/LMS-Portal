@@ -30,13 +30,13 @@ Feature: Validate Assign Staff Functionality in Manage User Page
     #When Admin clicks "Save" button without giving Email ID
     #Then Admin gets a Error message alert as Email ID  is required
  
-    #Scenario Outline: Form Submission without Program Name
-    #Given Admin is in Assign Staff details pop up page
-    #When Admin clicks save button without giving Program Name  for "<student>"
-    #Then Admin gets a Error message alert as ProgramName is required
-     #Examples: 
-      #| student | 
-      #|saranya@gmail.com| 
+    Scenario Outline: Form Submission without Program Name
+    Given Admin is in Assign Staff details pop up page
+    When Admin clicks save button without giving Program Name  for "<student>"
+    Then Admin gets a Error message alert as ProgramName is required
+     Examples: 
+      | student | 
+      |saranya@gmail.com| 
       
     #Scenario Outline: Form Submission for without selecting batch
     #Given Admin is in Assign Staff details pop up page
@@ -66,13 +66,13 @@ Feature: Validate Assign Staff Functionality in Manage User Page
       #|saranya@gmail.com| 
       
       
-    Scenario Outline: Form Submission by cancelling wihtout saving the Form
-    Given Admin is in Assign Staff details pop up page
-    When Admin clicks Cancel Icon on Assign Student form for "<student>"
-    Then Assign Student popup window should be closed without saving
-     Examples: 
-      | student | 
-      |saranya@gmail.com| 
+    #Scenario Outline: Form Submission by cancelling wihtout saving the Form
+    #Given Admin is in Assign Staff details pop up page
+    #When Admin clicks Cancel Icon on Assign Student form for "<student>"
+    #Then Assign Student popup window should be closed without saving
+     #Examples: 
+      #| student | 
+      #|saranya@gmail.com| 
       
      
      

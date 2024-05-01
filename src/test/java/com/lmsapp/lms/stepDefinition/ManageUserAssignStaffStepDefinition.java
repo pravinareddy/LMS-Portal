@@ -55,7 +55,8 @@ public class ManageUserAssignStaffStepDefinition {
 	}
 	
 	@Given("Admin is in Assign Staff details pop up page")
-	public void admin_is_in_assign_staff_details_pop_up_page() {
+	public void admin_is_in_assign_staff_details_pop_up_page() throws InterruptedException {
+		Thread.sleep(1000);
 		manageuser2.clickassignStaffBtn();
 	 
 	}
