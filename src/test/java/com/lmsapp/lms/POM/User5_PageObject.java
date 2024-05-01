@@ -85,12 +85,16 @@ public class User5_PageObject {
 	@FindBy(id = "mat-input-12")
 	WebElement Comments;
 	
-	@FindBy(css="[class='mat-focus-indicator mat-raised-button mat-button-base mat-warn']")
+	@FindBy(css="[color='warn']")
 	WebElement CancelButton;
 	
 	@FindBy(xpath="//tbody")
 	WebElement dataBody;
 
+	public void ClickCancel() {
+		CancelButton.click();
+	}
+	
 	public void DataBoday() {
 		assertFalse(dataBody.isDisplayed());
 	}
@@ -140,7 +144,7 @@ public class User5_PageObject {
 
 	public void ClickSubmit() {
 		submit.click();
-		;
+		
 	}
 
 	public void UsetWindow() {
