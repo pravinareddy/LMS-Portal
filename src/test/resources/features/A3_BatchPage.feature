@@ -1,12 +1,12 @@
 
-Feature: Batch Page Validation 
+Feature: Add Batch 
   Background: 
     Given Admin is on dashboard page after Login 
     And Admin clicks "Batch" from navigation bar
     And Admin clicks "+ A New Batch" button and a new pop up with Batch details appears
     
 
-Scenario: Check if the fields exist in pop 
+Scenario: Check if the fields exist in pop up
 
 Then The pop up should include the fields Name and Description as text box
 And Program Name as drop down
