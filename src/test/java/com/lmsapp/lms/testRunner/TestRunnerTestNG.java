@@ -12,7 +12,8 @@ import io.cucumber.testng.CucumberOptions;
 
 
 
-		features = "src/test/resources/features/ManageUserDelete.feature",
+		features = "src/test/resources/features/",
+				//src/test/resources/features/ManageUserDelete.feature
 
 		glue = {"com.lmsapp.lms.stepDefinition","com.lmsapp.lms.hooks"},
 		monochrome = true,
