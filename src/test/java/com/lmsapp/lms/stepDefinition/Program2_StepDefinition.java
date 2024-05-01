@@ -34,7 +34,6 @@ public class Program2_StepDefinition {
 		programobj = testsetup.pageobjectmanager.getProgramMethodsObject();
 		programobj2 = testsetup.pageobjectmanager.getProgramMethodsObject2();
 		
-
 }
 	
 	//Scenario 1 
@@ -144,7 +143,6 @@ public class Program2_StepDefinition {
 	public void admin_should_see_the_pagination_has_next_active_link() {
 	    System.out.println("Active link");
 	}
-
 
     //Scenario 5 
 	@When("Admin clicks last page link")

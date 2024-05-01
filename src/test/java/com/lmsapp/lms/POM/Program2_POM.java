@@ -98,40 +98,7 @@ public class Program2_POM {
 	{
 	programlink.click();
 	}
-	
-//	public List<String> sorting(String columnHeading,int clickCount) {
-//		
-//		int columnIndex = -1;
-//		List<String> originalList = new ArrayList<>();
-//						
-//		WebElement columnHeadingElement = driver.findElement(By.xpath("//th[contains(text(),'"+columnHeading  +" ')]"));
-//		for(int i =0; i<clickCount;i++) {
-//			columnHeadingElement.click();
-//		}
-//							
-//		if(columnHeading.contains("Program Name")) {
-//			 columnIndex = 2 ;
-//		} else if (columnHeading.contains("Program Description")){
-//			columnIndex = 3;
-//		}else if (columnHeading.contains("Program Status")){
-//			columnIndex = 4;
-//		}
-//			
-//		 do {
-//		 List<WebElement> itemlist = driver.findElements(By.xpath("//tr/td["+ columnIndex +"]"));
-//		 List<String> pageItems = itemlist.stream().map(a->a.getText().toLowerCase()).collect(Collectors.toList());
-//		 originalList.addAll(pageItems);
-//		
-//		if(nextPageButton.isEnabled()) {
-//			 nextPageButton.click();
-//		 } else {
-//			 break;
-//		 }
-//		 } while (true);
-//		
-//		 return originalList;
-//}
-	
+		
 	public ArrayList<String> sortFnc(int columnIndex) {
 		List<WebElement> originalList;
 		ArrayList<String> originalListItems = new ArrayList<>();
@@ -229,8 +196,7 @@ public class Program2_POM {
 	
 			}
 			
-			//Pagenation
-			
+			//Pagenation			
 			public void validate_next_pagelink() {
 				nextbutton.click();
 				boolean isNextPageLinkActive = active_link.isEnabled();

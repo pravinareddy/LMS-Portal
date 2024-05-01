@@ -16,45 +16,7 @@ public class Program1_POM {
 WebDriver driver;
 @FindBy(xpath="//*[@id=\"program\"]")
 WebElement programlink;
-@FindBy(xpath="//div/mat-card/mat-card-title/div[2]/div[1]/button")
-WebElement deletebutton;
-@FindBy(xpath="//*[@id=\"new\"]/span[2]")
-WebElement newprogram;
-@FindBy(xpath="//div/mat-card/mat-card-content/p-table/div/div[1]/table/tbody")
-WebElement table;
-@FindBy(xpath="//*[@id=\"filterGlobal\"]")
-WebElement searchBar;
-@FindBy(xpath="//*[@id=\"saveProgram\"]")
-WebElement savebtn;
-@FindBy(xpath="//div/div/div[3]/button[1]")
-WebElement cancelbtn;
-@FindBy(xpath="//div/div/div[1]/div/button")
-WebElement closeicon;
-@FindBy(xpath="//*[@id=\"programName\"]")
-WebElement programtxt;
-@FindBy(xpath="//*[@id=\"programDescription\"]")
-WebElement programdescrip;
-@FindBy(xpath="//*[@id=\"category\"]/div/div[2]")
-WebElement radiobtn;
-@FindBy(xpath="//div/div/div[2]/div[1]/small")
-WebElement error1;
-@FindBy(xpath="//div/div/div[2]/div[2]/small")
-WebElement error2;
-@FindBy(xpath="//div/div/div[2]/small")
-WebElement error3;
-@FindBy(xpath="//*[@id=\"category\"]/div/div[2]/span")
-WebElement status_button;
-@FindBy(xpath="/html/body/app-root/app-program/div/mat-card/mat-card-content/p-table/div/div[1]/table/tbody/tr[5]/td[5]/div/span/button[2]/span[1]")
-WebElement deletebtn;
-@FindBy(xpath="/html/body/app-root/app-program/p-confirmdialog/div/div/div[1]/span")
-WebElement confirmbtn;
-@FindBy(xpath="/html/body/app-root/app-program/p-confirmdialog/div/div/div[3]/button[2]")
-WebElement yesbtn;
-@FindBy(xpath="/html/body/app-root/app-program/p-confirmdialog/div/div/div[3]/button[1]")
-WebElement nobtn;
-@FindBy(xpath="/html/body/app-root/app-program/p-confirmdialog/div/div/div[2]/span")
-WebElement confirmationbtn;
-	
+
 public static Logger LOG = LoggerFactory.getLogger(CommonMethodsObject.class);
 
 public Program1_POM(WebDriver driver) {
@@ -126,21 +88,6 @@ public void get_column_values_datatable() {
 		System.out.println(value);
 	}
 }
-
-/*
-public void check_sort_icon_on_headers() {
-	   java.util.List<WebElement> headers = driver.findElements(By.xpath("/html/body/app-root/app-program/div/mat-card/mat-card-content/p-table/div/div[1]/table"));
-
-    // Verify the presence of sort arrow icons beside each column header
-	   for (WebElement header : headers) {
-        // Check if the header contains a sort arrow icon
-        if (header.findElements(By.tagName("span")).size() > 0) {
-            System.out.println("Sort arrow icon found beside column header: " + header.getText());
-        } else {
-            System.out.println("Sort arrow icon not found beside column header: " + header.getText());
-        }
-    }}
-*/
  
 public void check_all_checkboxes_in_all_rows() {
 	 java.util.List<WebElement> checkboxes = driver.findElements(By.xpath("//tr//input[@type='checkbox']"));
@@ -241,7 +188,6 @@ public void save_without_anydata() {
 	String error7 =driver.findElement(By.xpath("/html/body/app-root/app-program/p-dialog/div/div/div[2]/small")).getText();	
 	System.out.println("------error alert-----"+error7);
 	
-
 }
 
 public void with_splchar_input() {
@@ -264,7 +210,7 @@ public void with_splchar_input() {
 public void sucess_program_created() {
 	WebElement programtxt=driver.findElement(By.xpath("//*[@id=\"programName\"]"));
 	programtxt.clear();
-	programtxt.sendKeys("SDET216");
+	programtxt.sendKeys("SDET2187");
 	WebElement programdescrip=driver.findElement(By.xpath("//*[@id=\"programDescription\"]"));
 	programdescrip.sendKeys("Design Framework");
 	WebElement radioBtn = driver.findElement(By.xpath("//*[@id=\"category\"]/div/div[2]"));
@@ -282,7 +228,7 @@ public void validate_edit_and_programname() {
 	editbtn.click();
 	WebElement programtxt=driver.findElement(By.xpath("//*[@id=\"programName\"]"));
 	programtxt.clear();
-	programtxt.sendKeys("SDET317");
+	programtxt.sendKeys("SDET319");
 	WebElement savebtn=driver.findElement(By.xpath("//*[@id=\"saveProgram\"]"));
 	savebtn.click();
 	String alert=driver.findElement(By.xpath("/html/body/app-root/app-program/p-toast/div")).getText();
