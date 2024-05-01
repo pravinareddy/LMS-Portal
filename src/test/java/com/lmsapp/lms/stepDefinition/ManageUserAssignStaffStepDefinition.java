@@ -86,15 +86,27 @@ public class ManageUserAssignStaffStepDefinition {
 		manageuser2.validateAssignStafftWithOutStatus(emailId);
 	}
 	
-	@When("Admin clicks Close\\(X) Icon on Assign staff form for {string}")
-	public void admin_clicks_close_x_icon_on_assign_staff_form_for(String emailId) throws InterruptedException {
-		manageuser2.validateAssignStafftClickCloseBtn(emailId);
-	   
+//	@When("Admin clicks Close\\(X) Icon on Assign staff form for {string}")
+//	public void admin_clicks_close_x_icon_on_assign_staff_form_for(String emailId) throws InterruptedException {
+//		manageuser2.validateAssignStafftClickCloseBtn(emailId);
+//	   
+//	}
+	
+	@Then("Assign Staff popup window should be closed without saving")
+	public void assign_staff_popup_window_should_be_closed_without_saving() throws InterruptedException {
+		manageuser2.validateStaffpopIsClosed();
+	}
+	
+//	@When("Admin clicks {string} Icon on Assign Student form for {string}")
+//	public void admin_clicks_icon_on_assign_student_form_for(String emailId, String elementaction) throws InterruptedException {
+//		manageuser2.validateAssignStafftClickCloseBtn(emailId,elementaction);
+//	}
+	@When("Admin clicks {string} Icon on Assign staff form for {string}")
+	public void admin_clicks_icon_on_assign_staff_form_for(String emailId, String elementaction) throws InterruptedException {
+		manageuser2.validateAssignStafftClickCloseBtn(emailId,elementaction);
 	}
 
 	
-
-
 }
 
 

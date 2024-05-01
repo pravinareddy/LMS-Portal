@@ -469,6 +469,7 @@ public class ManageUserPOM2 {
 		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
 		executor.executeScript("arguments[0].click();", batchList.get(0));
 		
+		
 		assignStdSaveBtn.click();
 			
 	}
@@ -482,6 +483,7 @@ public class ManageUserPOM2 {
 		batchDD.click();
 		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
 		executor.executeScript("arguments[0].click();", batchList.get(0));
+		executor.executeScript("arguments[0].click();", activeRadioBtn);
 		
 		assignStdSaveBtn.click();
 			
@@ -520,7 +522,7 @@ public class ManageUserPOM2 {
 		prognameDD.click();
 		List<WebElement>progList= driver.findElements(By.xpath("//li"));
 		progList.get(0).click();
-
+		executor.executeScript("arguments[0].click();", activeRadioBtn);
 		assignStdSaveBtn.click();
 			
 	}
@@ -547,7 +549,8 @@ public class ManageUserPOM2 {
 		
 		prognameDD.click();
 		List<WebElement>progList= driver.findElements(By.xpath("//li"));
-		executor.executeScript("arguments[0].click();", progList.get(2));
+		executor.executeScript("arguments[0].click();", progList.get(0));
+		executor.executeScript("arguments[0].click();", activeRadioBtn);
 		assignStdSaveBtn.click();
 			
 	}
@@ -578,7 +581,7 @@ public class ManageUserPOM2 {
 			}
 		}
 		
-
+		executor.executeScript("arguments[0].click();", activeRadioBtn);
 		assignStdSaveBtn.click();
 			
 	}
@@ -606,8 +609,8 @@ public class ManageUserPOM2 {
 				executor.executeScript("arguments[0].click();", emailidList.get(i));
 			}
 		}
-		
-
+					
+		executor.executeScript("arguments[0].click();", activeRadioBtn);
 		assignStdSaveBtn.click();
 			
 	}
@@ -651,7 +654,7 @@ public class ManageUserPOM2 {
 	
 			
 	}
-	public void validateAssignStafftClickCloseBtn(String emailid) throws InterruptedException
+	public void validateAssignStafftClickCloseBtn(String emailid,String elementaction) throws InterruptedException
 	{
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		emailDD.click();
@@ -673,14 +676,17 @@ public class ManageUserPOM2 {
 		
 		prognameDD.click();
 		List<WebElement>progList= driver.findElements(By.xpath("//li"));
-		progList.get(32).click();
+		progList.get(3).click();
 		batchDD.click();
 		Thread.sleep(500);
 		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
-		executor.executeScript("arguments[0].click();", batchList.get(1));
+		executor.executeScript("arguments[0].click();", batchList.get(0));
 		executor.executeScript("arguments[0].click();", activeRadioBtn);
-		executor.executeScript("arguments[0].click();", assignSaffCloseBtn);
-	
+		if(elementaction.equalsIgnoreCase("close"))
+			executor.executeScript("arguments[0].click();", assignSaffCloseBtn);
+			else
+				executor.executeScript("arguments[0].click();", assignStdCancelBtn);
+		
 			
 	}
 	public void validateAssignStdtClickCancelBtn(String emailid) throws InterruptedException
@@ -711,15 +717,27 @@ public class ManageUserPOM2 {
 		List<WebElement>batchList= driver.findElements(By.xpath("//li"));
 		executor.executeScript("arguments[0].click();", batchList.get(0));
 		executor.executeScript("arguments[0].click();", activeRadioBtn);
-		executor.executeScript("arguments[0].click();", assignStdCancelBtn);
-	
-			
+		executor.executeScript("arguments[0].click();", assignSaffCloseBtn);
+				
 	}
 	
 	public void validatepopIsClosed()
 	{
 		Assert.assertFalse(assignStdCloseBtn.isEnabled(), "Assign student popup is still open");
 	}
+	
+		String assignStaffPopupWindow = "//div[@role='dialog']";
+	
+		public void validateStaffpopIsClosed() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+		try {
+		 	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(assignStaffPopupWindow)));
+		 LOG.error("Assign staff alert disappeared successfully");
+		}catch (NoSuchElementException  e) {
+			LOG.error("Assign staff alert was not found or is stale.");
+		}
+	}
+
 	
 	
 	@FindBy(xpath="//span[@class='pi pi-times ng-tns-c133-9']/..")
@@ -746,16 +764,16 @@ public class ManageUserPOM2 {
 		Assert.assertTrue(deleteNoBtn.isEnabled(), "No button is disabled for assign student popup");
 		Assert.assertEquals(deleteConfirmMsg.getText(), "Confirm",
 				"Confirm heading is not present in the student popup");
-		System.out.println("Is  Yes button in Delete popup window enabled? " + deleteYesBtn.isEnabled());
+		LOG.info("Is  Yes button in Delete popup window enabled? " + deleteYesBtn.isEnabled());
 	}
 		
 	public void validatePopupAlertExists() {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		try {
 		 	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("deletePopupWindow")));
-			System.out.println("Deletion alert disappeared successfully");
+		 	LOG.info("Deletion alert disappeared successfully");
 		}catch (NoSuchElementException  e) {
-		    System.out.println("Deletion alert was not found or is stale.");
+			LOG.info("Deletion alert was not found or is stale.");
 		}
 	}
 		
@@ -781,7 +799,7 @@ public class ManageUserPOM2 {
 					if (alertAction.equalsIgnoreCase("yes")) {
 						deleteYesBtn.click();
 						String actualMsg =msgDeleteSuccess.getText().trim();
-						System.out.println("actualMsg is "+actualMsg);
+						LOG.info("actualMsg is "+actualMsg);
 						String expectedMessage = "Successful\nUser Deleted".trim();
 						Thread.sleep(1000);
 						softAssert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");
@@ -825,7 +843,7 @@ public class ManageUserPOM2 {
 		    try {
 		        checkBox.click();
 		    } catch (NoSuchElementException ex) {
-		        System.out.println("Checkbox element not found on the page.");
+		    	LOG.info("Checkbox element not found on the page.");
 		    }
 		}
 		
@@ -833,12 +851,12 @@ public class ManageUserPOM2 {
 			try {
 				boolean isheaderDeleteBtn = headerDeleteBtn.isEnabled();
 				if (isheaderDeleteBtn) {
-				    System.out.println("Delete button is enabled after clicking the checkbox.");
+				   LOG.info("Delete button is enabled after clicking the checkbox.");
 				} else {
-				    System.out.println("Delete button is not enabled after clicking the checkbox.");
+					LOG.info("Delete button is not enabled after clicking the checkbox.");
 				}
 			} 	catch (NoSuchElementException e) {
-		        System.out.println("Delete button not found on the page.");
+				LOG.info("Delete button not found on the page.");
 		    }
 		}
 		
@@ -882,7 +900,7 @@ public class ManageUserPOM2 {
 			if (alertAction.equalsIgnoreCase("yes")) {
 				deleteYesBtn.click();
 				String actualMsg = msgDeleteSuccess.getText().trim();
-				System.out.println("actualMsg is " + actualMsg);
+				LOG.info("actualMsg is " + actualMsg);
 				String expectedMessage = "Successful\nUsers Deleted".trim();
 				Thread.sleep(1000);
 				softAssert.assertEquals(actualMsg, expectedMessage, "Actual message is not matching with expected");

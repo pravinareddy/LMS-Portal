@@ -119,7 +119,8 @@ public class ManageUserAssignStudentStepDefintion {
 	}
 	
 	@Given("Given Admin is in Assign Student details pop up page")
-	public void given_admin_is_in_assign_student_details_pop_up_page() {
+	public void given_admin_is_in_assign_student_details_pop_up_page() throws InterruptedException {
+		Thread.sleep(500);
 		manageuser2.clickassignStudentBtn();
 	}
 
@@ -160,6 +161,12 @@ public class ManageUserAssignStudentStepDefintion {
 	public void admin_clicks_cancel_icon_on_assign_student_form_for(String emailid) throws InterruptedException {
 		manageuser2.validateAssignStdtClickCancelBtn(emailid);
 	}
+	
+	@When("Admin clicks {string} Icon on Assign Student form for {string}")
+	public void admin_clicks_icon_on_assign_student_form_for(String emailid, String elementaction) throws InterruptedException {
+		manageuser2.validateAssignStafftClickCloseBtn(emailid,elementaction);
+	}
+
 
 
 
