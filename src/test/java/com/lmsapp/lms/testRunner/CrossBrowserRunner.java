@@ -15,7 +15,7 @@ import io.cucumber.testng.CucumberOptions;
 
 
 
-		features = "src/test/resources/features/RegistrationPage.feature",
+		features = "src/test/resources/features/",
 		glue = {"com.lmsapp.lms.stepDefinition","com.lmsapp.lms.hooks"},
 		monochrome = true,
 //		dryRun=true

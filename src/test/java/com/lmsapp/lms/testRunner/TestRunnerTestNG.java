@@ -13,6 +13,7 @@ import io.cucumber.testng.CucumberOptions;
 
 
 		features = "src/test/resources/features/",
+				//src/test/resources/features/ManageUserDelete.feature
 
 		glue = {"com.lmsapp.lms.stepDefinition","com.lmsapp.lms.hooks"},
 		monochrome = true,
@@ -21,7 +22,7 @@ import io.cucumber.testng.CucumberOptions;
 		plugin = {"pretty", "html:target/cucumber.html","json:target/cucumber.json",
        		      "pretty","io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
 		          "pretty","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"}
-
+		
 
 		)
 
