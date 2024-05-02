@@ -734,7 +734,7 @@ public class ManageUserPOM2 {
 		 	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(assignStaffPopupWindow)));
 		 LOG.error("Assign staff alert disappeared successfully");
 		}catch (NoSuchElementException  e) {
-			LOG.error("Assign staff alert was not found or is stale.");
+			LOG.error("Assign staff alert was not found .");
 		}
 	}
 
