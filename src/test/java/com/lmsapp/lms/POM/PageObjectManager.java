@@ -2,10 +2,6 @@ package com.lmsapp.lms.POM;
 
 import org.openqa.selenium.WebDriver;
 
-
-
-
-
 public class PageObjectManager {
 	public WebDriver driver;
 	public CommonMethodsObject commonobj;
@@ -14,8 +10,12 @@ public class PageObjectManager {
 	public User3_PageObject user3obj;
 	public User4_PageObject user4obj;
 	public User5_PageObject user5obj;
+	public ManageUserPOM2 manageuser2;
+ 	public LoginPageOM loginPageOM;
+	public DashBoardPageOM dashboardPageOM;
 	
-	public PageObjectManager(WebDriver driver) {
+	
+	public PageObjectManager(WebDriver driver){
 		super();
 		this.driver = driver;
 	}
@@ -23,36 +23,48 @@ public class PageObjectManager {
 	public CommonMethodsObject getCommonMethodsObject() {
 		commonobj = new CommonMethodsObject(driver);
 		return commonobj;
-		
 	}
+
 
 	public User1_PageObject getUser1MethodsObject() {
 		user1obj = new User1_PageObject(driver);
 		return user1obj;
-		
+	}
+
+	public ManageUserPOM2 getManageUser2Obj() {
+		manageuser2 =new ManageUserPOM2(driver);
+		return manageuser2;
+	}
+  
+  public LoginPageOM getLoginPageObject() {
+		loginPageOM = new LoginPageOM(driver);
+		return loginPageOM;
+	}
+	
+	public DashBoardPageOM getDashBoardPageObject() {
+		dashboardPageOM =new DashBoardPageOM(driver);
+		return dashboardPageOM;
 	}
 
 	public User2_PageObject getUser2MethodsObject() {
 		user2obj = new User2_PageObject(driver);
 		return user2obj;
-		
 	}
 	
 	public User3_PageObject getUser3MethodsObject() {
 		user3obj = new User3_PageObject(driver);
 		return user3obj;
-		
 	}
 
 	public User4_PageObject getUser4MethodsObject() {
-		user4obj = new User4_PageObject(driver);
+		user4obj =new User4_PageObject(driver);
 		return user4obj;
-		
 	}
 
 	public User5_PageObject getUser5MethodsObject() {
 		user5obj = new User5_PageObject(driver);
 		return user5obj;
-		
 	}
 }
+
+
